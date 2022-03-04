@@ -1,0 +1,109 @@
+########## Creation command ############
+conda create -y -n TestPathDev python=3.9
+conda activate TestPathDev
+
+## Special Packages
+conda install -y parsedatetime
+
+## Dev Packages
+conda install -y spyder jupyterlab nb_conda_kernels pylint
+
+########## Export commands ############
+conda env export > C:\TEMP\TestPathDev_FULL.yml
+conda env export --from-history > C:\TEMP\TestPathDev.yml
+conda list --explicit > C:\TEMP\TestPathDev_specfile.txt
+
+########## Install commands ############
+conda create --name sectionary --file sectionaryDev_specfile.txt
+conda env create --name variandb_relations --file=C:\TEMP\sectionaryDev_FULL.yml
+
+########## Primary Packages ############
+parsedatetime
+
+## Special Packages
+python >= 3.9
+jupyterlab 
+spyder
+jupyterlab
+nb_conda_kernels
+pylint
+
+
+########### Misc Conda Commands  ##########
+conda config --append channels conda-forge
+conda activate TestPathDev
+conda remove --name TestPathDev --all
+
+
+###########################################
+# Paths and Environment Variables         #
+###########################################
+
+
+############ Additional Package Python Paths  ############
+"%HOMEPATH%\Documents\Python Scripts\TestPathPackage\src"
+"%HOMEPATH%\Documents\Python Scripts\TestPathPackage\examples"
+"%HOMEPATH%\Documents\Python Scripts\TestPathPackage\tests"
+
+
+########### Set Environment Variable For The Current Session ##########
+# Windows CMD
+C:\> set VAR_NAME="VALUE"
+
+# Windows PowerShell
+PS C:\> $env:VAR_NAME="VALUE"
+
+########### Set Environment Variable Permanently ##########
+# requires elevated command prompt
+# For the current user
+setx VAR_NAME "VALUE
+#
+# For all users (global environment variable)
+setx /M VAR_NAME "VALUE"
+
+
+########### Add folder to PYTHONPATH ##########
+#Windows truncates PATH to 1024 characters. Make a backup of PATH before any modifications.
+# Backup of Path
+echo %PYTHONPATH% > C:\pythonpath-backup.txt
+
+set PYTHONPATH="%PYTHONPATH%;C:\path\to\directory\"
+
+
+
+
+###########################################
+# Launch Commands                         #
+###########################################
+
+
+########## Spyder Launch shortcut ############
+# Target
+C:\ProgramData\Anaconda3\pythonw.exe C:\ProgramData\Anaconda3\cwp.py %USERPROFILE%\.conda\envs\TestPathDev %USERPROFILE%\.conda\envs\TestPathDev\pythonw.exe %USERPROFILE%\.conda\envs\TestPathDev\Scripts\spyder-script.py
+# Start in
+"%HOMEPATH%\Documents\Python Scripts\TestPathPackage"
+# Icon
+%USERPROFILE%\.conda\envs\TestPathDev\Scripts\spyder.ico
+
+
+########## Jupyter Lab Launch ############
+C:\ProgramData\Anaconda3\python.exe C:\ProgramData\Anaconda3\cwp.py %USERPROFILE%\.conda\envs\TestPathDev %USERPROFILE%\.conda\envs\TestPathDev\python.exe %USERPROFILE%\.conda\envs\TestPathDev\Scripts\jupyter-lab-script.py "%HOMEPATH%\Documents\Python Scripts\TestPathPackage"
+# Start in
+"%HOMEPATH%\Documents\Python Scripts\TestPathPackage"
+# Icon
+C:\ProgramData\Anaconda3\Menu\jupyter.ico
+
+
+
+########## VS Code Launch ############
+CALL C:\ProgramData\Anaconda3\Scripts\activate.bat C:\ProgramData\Anaconda3
+CALL conda activate TestPathDev
+Cd "%HOMEPATH%\Documents\Python Scripts\TestPathPackage"
+C:
+code .
+
+
+########## Global Env Path Option ############
+C:\ProgramData\Anaconda3\envs\TestPathDev
+
+

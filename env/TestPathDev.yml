@@ -1,0 +1,12 @@
+name: TestPathDev
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.9
+  - parsedatetime
+  - nb_conda_kernels
+  - spyder
+  - pylint
+  - jupyterlab
+prefix: C:\Users\smoke\.conda\envs\TestPathDev
