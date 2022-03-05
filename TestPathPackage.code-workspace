@@ -1,24 +1,22 @@
 {
-	"folders": [
+    "folders": [
 		{
 			"path": "."
 		}
 	],
 	"settings": {
-
+		"python.envFile": "${workspaceRoot}/.env",
+		"python.defaultInterpreterPath": "C:/ProgramData/Anaconda3",
 	},
 	"launch": {
 		"version": "0.2.0",
 		"configurations": [
-
 			{
 				"name": "Python: Current File",
 				"type": "python",
 				"request": "launch",
 				"program": "${file}",
 				"console": "integratedTerminal",
-				"cwd": "${fileDirname}",
-				"env": {"PYTHONPATH": "${workspaceFolder}/src;${env:PYTHONPATH}"},
 				"justMyCode": true
 			}
 		]

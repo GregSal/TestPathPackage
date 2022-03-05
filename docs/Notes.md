@@ -196,3 +196,20 @@ PYTHONPATH="${WORKSPACE_FOLDER}/tests;${WORKSPACE_FOLDER};${WORKSPACE_FOLDER}/ex
 > ...
 
 <b><i>`pylint` depend on the prsenece of the `__init__.py` and on correct `.env` settings.</i></b>
+
+# `python.condaPath` Settings
+- It is not clear if `"python.condaPath"` is still being used.
+- Adding: `"python.condaPath": ""` to *TestPathPackage.code-workspace* gave the following lint warning:
+    > This setting can only be applied in user settings in local window or in remote settings in remote window.
+
+- It is also not clear if `"python.condaPath"` if it should include `conda.exe`.
+    > `"python.condaPath": "C:\\ProgramData\\Anaconda3",`<br>
+    > OR<br>
+    > `"python.condaPath": "C:\\ProgramData\\Anaconda3\\Scripts\\conda.exe",`
+
+### python.pythonPath is being deprecated
+From [VS Code Experiments pythonDeprecatePythonPath](https://aka.ms/AAfekmf)
+> - The python.pythonPath setting is no longer used by the Python extension.
+> - A new optional setting `python.defaultInterpreterPath` is introduced in the  user and workspace scope, from which the extension will read the value when loading a project.
+> - Changes to the python.defaultInterpreterPath will not be picked up by the  Python extension once user explicitly chooses a different interpreter for the  workspace. The extension will also not set nor change the value of this setting, it will only read from it.
+

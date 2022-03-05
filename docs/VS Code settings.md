@@ -1,42 +1,21 @@
-#### Notes
-- One of the big challenges with getting these settings correct is that if there are errors, typos 
-or incorrect path delimiters the setting will fail silently. 
-- On Windows the slashes in the path lean forward: "/". 
-- Different paths are separated with a ";" on Windows and a ":" on other platforms with.
-- `${pathSeparator}` is not ":" or ";". `${pathSeparator}` is "/" for Linux/Mac or "\" for Windows
-- `${workspaceFolder}` evaluates to *myproject*, it is not to the *.vscode* folder.
-- `${workspaceFolder}` will be relative to the scripts folder.
-- `"terminal.integrated.cwd": "${workspaceFolder}"`, ***doesn't work???***
-- It is not clear if the vscode *.env* file does variable expansion such as: `${WORKSPACE_FOLDER}`.
->> "Variable substitution is only supported in VS Code settings files, it will not work in *.env* 
-environment files." [VS Code Environment variables](https://code.visualstudio.com/docs/python/environments#_environment-variable-definitions-file "VS Code Environment variables")
+# `python.pythonPath` Settings
+- For *Global* Anaconda installations the path is `"C:/ProgramData/Anaconda3"`
+- For *local* (single user) installations the path is `"C:/Users/<user name>/anaconda3"`
+### defaultInterpreterPath
+> Path to default Python to use when extension loads up for the first time, 
+no longer used once an interpreter is selected for the workspace. 
+See https://aka.ms/AAfekmf to understand when this is used.
+> - `"python.defaultInterpreterPath": "C:/ProgramData/Anaconda3",`<br>
+> **OR**<br>
+> - `"python.defaultInterpreterPath": "C:/Users/${env:USERNAME}/anaconda3",`
 
->> On that same page it says: "values can refer to any other environment variable that's already 
-defined in the system or earlier in the file", which is what we're doing here. It seems the 
-documentation is contradicting itself. 
->> *Tip:* Path, args, and env all support resolving variables.
-
-- Make sure that you have configured VS Code to allow terminal configurations to amend your shell 
-settings (via Manage Workspace Shell Permissions ***????***) 
-[VS Code Integrated Terminal Settings](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration). 
-Otherwise VS Code silently ignores your `terminal.integrated.env.{platform}` settings.
-> Does the above comment refer to this?
->>Shell integration is an experimental feature, which will turn on certain features like enhanced 
-command tracking and current working directory detection. Shell integration works by injecting a 
-script that is run when the shell is initialized and lets the terminal gain additional insights 
-into what is happening within the terminal. Note that the script injection may not work if you 
-have custom arguments defined in the terminal profile.
->> Supported shells:
->> - Linux/macOS: bash, pwsh, zsh
->> - Windows: *pwsh*
->> You can try it out by setting: `terminal.integrated.enableShellIntegration` to true.
 
 # Settings for pylint 
 <b><i>`pylint` depends on the presence of the `__init__.py` and on correct `.env` settings.</i></b>
 - Pylint will only search for other modules in the worspace directory if the module from which it is launched is in a folder which is a package (i.e. has _init_.py file)
 - The _init_.py file cane be empty.  It just needs to exist.
 
-## VS Code *.env* Settings
+## VS Code `.env` Settings
 - PYTHONPATH in the .env file must be absolute paths.
 - On Windows the slashes in the path lean forward: "/". 
 - Different paths are separated with a ";" on Windows.
@@ -46,16 +25,30 @@ have custom arguments defined in the terminal profile.
 > ```
 > HOME_PATH="C:\Users\smoke"
 > WORKSPACE_FOLDER="${HOME_PATH}/Documents/Python Scripts/TestPathPackage"
-> PYTHONPATH="${WORKSPACE_FOLDER}/tests;${WORKSPACE_FOLDER};${WORKSPACE_FOLDER}/examples;${WORKSPACE_FOLDER}/src;${PYTHONPATH}"
+> PYTHONPATH="${WORKSPACE_FOLDER};${PYTHONPATH}"
+> PYTHONPATH="${WORKSPACE_FOLDER}/tests;${PYTHONPATH}"
+> PYTHONPATH="${WORKSPACE_FOLDER}/examples;${PYTHONPATH}"
+> PYTHONPATH="${WORKSPACE_FOLDER}/src;${PYTHONPATH}"
 > ```
+
+### Path to `.env` file
+- `python.envFile` is the path to the "`.env`" file, described above.
+- Typical path is:
+    - `"python.envFile": "${workspaceFolder}/.env"`
 
 # VS Code *launch.json* Settings
 **Debugging**
 - Set the working directory to that of the file being executed.
->> `"cwd": "${fileDirname}" `
+    > The default will be to start in the *workspaceFolder*
 
 - Add import path to the *PYTHONPATH* environment variable.
->> `"env": {"PYTHONPATH": "${workspaceFolder};${env:PYTHONPATH}"}`
+    > `"env": {"PYTHONPATH": "${workspaceFolder};${env:PYTHONPATH}"}`
+
+- The added import path can either be a full path or a sub-folder of the current working directory.
+    > `"env": {"PYTHONPATH": "examples"}`
+
+- This is not nessesary if the *PYTHONPATH* setting in the `.env` file already
+ includes the required folders.
 
 - **Example: `launch.json` Settings**
 > ```json
@@ -70,41 +63,29 @@ have custom arguments defined in the terminal profile.
 >             "console": "integratedTerminal",
 >             "cwd": "${fileDirname}",
 >             "justMyCode": true,
->             "env": {"PYTHONPATH": "${workspaceFolder}/src;${workspaceFolder}/tests;${workspaceFolder}/examples;${env:PYTHONPATH}"},
+>             "env": {"PYTHONPATH": "${workspaceFolder}/tests;${workspaceFolder}/examples;${env:PYTHONPATH}"},
 >         }
 >     ]
 > }
 > ```
-# VS Code *.env* Settings
+# DONE TO HERE
+# Project Path Settings
+"python.defaultInterpreterPath": "*path to python exe*",
+"python.analysis.extraPaths": [
+    "*python package path*",
+    "*python package path*"
+],
+"python.autoComplete.extraPaths": [
+    "*python package path*",
+    "*python package path*"
+]
 
-```
-WORKSPACE_FOLDER=C:/full/path/to/myproject
-PYTHONPATH=${WORKSPACE_FOLDER}/src;${WORKSPACE_FOLDER}/tests
-```
 
-# Project Path Settings *.vscode\settings.json* 
-### `python.pythonPath` Settings
-- `python.pythonPath` is the path to the python executable.
-- For *Global* Anaconda installations the path is `"C:\\ProgramData\\Anaconda3"`
-- For *local* (single user) installations the path is `"C:\\Users\\<user name>\\anaconda3"`
-- It is not clear if `"python.condaPath"` is still being used.  
-If it is, should it match `python.pythonPath` or include `conda.exe`?
-```json
-    "python.pythonPath": "C:\\ProgramData\\Anaconda3",
-    "python.condaPath": "C:\\ProgramData\\Anaconda3",
-    "python.condaPath": "C:\\ProgramData\\Anaconda3\\Scripts\\conda.exe",
-```
-- `python.defaultInterpreterPath` appears to be an older version of `pythonPath`, the path 
-to the python executable.
-> - "python.defaultInterpreterPath": "C:\\ProgramData\\Anaconda3",
-
-### Path to `.env` file
-- 
-- `python.envFile` is the path to the "`.env`" file, described above.
-- Typical path is:
-> - `"python.envFile": "${workspaceFolder}/.env"`
     "python.pythonPath": "C:\\ProgramData\\Anaconda3",
     "python.analysis.cacheFolderPath": "C:\\Users\\Greg\\OneDrive - Queen's University\\Python\\Projects\\python_cache",
+
+
+# Project Path Settings *.vscode\settings.json* 
 
 ### Import path settings
 **pythonPathSetter** is an extension that adds import paths
@@ -601,3 +582,35 @@ This should be set to the name of an existing profile:
       "A:\\OneDrive - Queen's University\\Python\\Projects"
     ],
 
+#### Notes
+- One of the big challenges with getting these settings correct is that if there are errors, typos 
+or incorrect path delimiters the setting will fail silently. 
+- On Windows the slashes in the path lean forward: "/". 
+- Different paths are separated with a ";" on Windows and a ":" on other platforms with.
+- `${pathSeparator}` is not ":" or ";". `${pathSeparator}` is "/" for Linux/Mac or "\" for Windows
+- `${workspaceFolder}` evaluates to *myproject*, it is not to the *.vscode* folder.
+- `${workspaceFolder}` will be relative to the scripts folder.
+- `"terminal.integrated.cwd": "${workspaceFolder}"`, ***doesn't work???***
+- It is not clear if the vscode *.env* file does variable expansion such as: `${WORKSPACE_FOLDER}`.
+>> "Variable substitution is only supported in VS Code settings files, it will not work in *.env* 
+environment files." [VS Code Environment variables](https://code.visualstudio.com/docs/python/environments#_environment-variable-definitions-file "VS Code Environment variables")
+
+>> On that same page it says: "values can refer to any other environment variable that's already 
+defined in the system or earlier in the file", which is what we're doing here. It seems the 
+documentation is contradicting itself. 
+>> *Tip:* Path, args, and env all support resolving variables.
+
+- Make sure that you have configured VS Code to allow terminal configurations to amend your shell 
+settings (via Manage Workspace Shell Permissions ***????***) 
+[VS Code Integrated Terminal Settings](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration). 
+Otherwise VS Code silently ignores your `terminal.integrated.env.{platform}` settings.
+> Does the above comment refer to this?
+>>Shell integration is an experimental feature, which will turn on certain features like enhanced 
+command tracking and current working directory detection. Shell integration works by injecting a 
+script that is run when the shell is initialized and lets the terminal gain additional insights 
+into what is happening within the terminal. Note that the script injection may not work if you 
+have custom arguments defined in the terminal profile.
+>> Supported shells:
+>> - Linux/macOS: bash, pwsh, zsh
+>> - Windows: *pwsh*
+>> You can try it out by setting: `terminal.integrated.enableShellIntegration` to true.
