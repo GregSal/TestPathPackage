@@ -3,7 +3,6 @@
 or incorrect path delimiters the setting will fail silently. 
 - On Windows the slashes in the path lean forward: "/". 
 - Different paths are separated with a ";" on Windows and a ":" on other platforms with.
-- PYTHONPATH in the .env file must be absolute paths.
 - `${pathSeparator}` is not ":" or ";". `${pathSeparator}` is "/" for Linux/Mac or "\" for Windows
 - `${workspaceFolder}` evaluates to *myproject*, it is not to the *.vscode* folder.
 - `${workspaceFolder}` will be relative to the scripts folder.
@@ -31,14 +30,25 @@ have custom arguments defined in the terminal profile.
 >> - Linux/macOS: bash, pwsh, zsh
 >> - Windows: *pwsh*
 >> You can try it out by setting: `terminal.integrated.enableShellIntegration` to true.
-- Pylint will only search for other modules in the worspace directory if the module from which it is 
-launched is in a folder which is a package (ie has _init_.py file)
-[pylint Docs](https://docs.pylint.org/en/1.6.0/run.html) meaning that pylint will continue to 
-highlight import errors despite the code running properly due to the VS Code *launch.json* configured 
-as above.
-- Check PYTHONPATH Environment variable with:
-> - **PowerShell**:  $Env:PYTHONPATH
-> - **Command**:  echo %PYTHONPATH%
+
+# Settings for pylint 
+<b><i>`pylint` depends on the presence of the `__init__.py` and on correct `.env` settings.</i></b>
+- Pylint will only search for other modules in the worspace directory if the module from which it is launched is in a folder which is a package (i.e. has _init_.py file)
+- The _init_.py file cane be empty.  It just needs to exist.
+
+## VS Code *.env* Settings
+- PYTHONPATH in the .env file must be absolute paths.
+- On Windows the slashes in the path lean forward: "/". 
+- Different paths are separated with a ";" on Windows.
+- It appears tha Variable substitution is only supported for environment variables that are defined earlier in the file.
+
+**Example `.env` file**
+> ```
+> HOME_PATH="C:\Users\smoke"
+> WORKSPACE_FOLDER="${HOME_PATH}/Documents/Python Scripts/TestPathPackage"
+> PYTHONPATH="${WORKSPACE_FOLDER}/tests;${WORKSPACE_FOLDER};${WORKSPACE_FOLDER}/examples;${WORKSPACE_FOLDER}/src;${PYTHONPATH}"
+> ```
+
 # VS Code *launch.json* Settings
 **Debugging**
 - Set the working directory to that of the file being executed.
@@ -47,7 +57,7 @@ as above.
 - Add import path to the *PYTHONPATH* environment variable.
 >> `"env": {"PYTHONPATH": "${workspaceFolder};${env:PYTHONPATH}"}`
 
-- **Example:**
+- **Example: `launch.json` Settings**
 > ```json
 > {
 >     "version": "0.2.0",
@@ -59,7 +69,8 @@ as above.
 >             "program": "${file}",
 >             "console": "integratedTerminal",
 >             "cwd": "${fileDirname}",
->             "env": {"PYTHONPATH": "${workspaceFolder};${env:PYTHONPATH}"}
+>             "justMyCode": true,
+>             "env": {"PYTHONPATH": "${workspaceFolder}/src;${workspaceFolder}/tests;${workspaceFolder}/examples;${env:PYTHONPATH}"},
 >         }
 >     ]
 > }

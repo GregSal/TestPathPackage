@@ -114,16 +114,9 @@ PythonPaths:<br>
 - Using `Run and Debug`
 ![Run and Debug](RunandDebug.png)
 Got the following output:
+
 ```
-Windows PowerShell
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-Try the new cross-platform PowerShell https://aka.ms/pscore6
-
-PS C:\Users\smoke\Documents\Python Scripts\TestPathPackage\examples>  & 'python' 'c:\Users\smoke\.vscode\extensions\ms-python.python-2022.2.1924087327\pythonFiles\lib\python\debugpy\launcher' '57753' '--' 'c:\Users\smoke\Documents\Python Scripts\TestPathPackage\examples\example_script.py'
-In module: __main__
-current path is: C:\Users\smoke\Documents\Python Scripts\TestPathPackage\examples
-
+...
 PythonPaths:
         c:\Users\smoke\Documents\Python Scripts\TestPathPackage\examples
         C:\Users\smoke\Documents\Python Scripts\TestPathPackage\src
@@ -136,29 +129,70 @@ PythonPaths:
         C:\Users\smoke\.conda\envs\TestPathDev\lib\site-packages\win32
         C:\Users\smoke\.conda\envs\TestPathDev\lib\site-packages\win32\lib
         C:\Users\smoke\.conda\envs\TestPathDev\lib\site-packages\Pythonwin
-
-In module: simple_script
-
-current path is: C:\Users\smoke\Documents\Python Scripts\TestPathPackage\examples
-
-PythonPaths:
-        c:\Users\smoke\Documents\Python Scripts\TestPathPackage\examples
-        C:\Users\smoke\Documents\Python Scripts\TestPathPackage\src
-        C:\Users\smoke\Documents\Python Scripts\TestPathPackage\examples
-        C:\Users\smoke\.conda\envs\TestPathDev\python39.zip
-        C:\Users\smoke\.conda\envs\TestPathDev\DLLs
-        C:\Users\smoke\.conda\envs\TestPathDev\lib
-        C:\Users\smoke\.conda\envs\TestPathDev
-        C:\Users\smoke\.conda\envs\TestPathDev\lib\site-packages
-        C:\Users\smoke\.conda\envs\TestPathDev\lib\site-packages\win32
-        C:\Users\smoke\.conda\envs\TestPathDev\lib\site-packages\win32\lib
-        C:\Users\smoke\.conda\envs\TestPathDev\lib\site-packages\Pythonwin
-
-Done module: simple_script
-
-
-Tomorrow is: Friday, 04. March 2022 09:00AM
-
-Done module: __main__
+...
 ```
+
 - The <u>**C:\Documents**</u> paths disappeared.
+
+
+5. Modified `.env` file to explicitly state the path:
+```
+HOME_PATH="C:\Users\smoke"
+WORKSPACE_FOLDER="${HOME_PATH}/Documents/Python Scripts/TestPathPackage"
+PYTHONPATH="${WORKSPACE_FOLDER}/tests;${WORKSPACE_FOLDER};${WORKSPACE_FOLDER}/examples;${WORKSPACE_FOLDER}/src;${PYTHONPATH}"
+```
+- The paths are now all correct.
+- some duplicates are present.
+```
+...
+PythonPaths:
+        c:\Users\smoke\Documents\Python Scripts\TestPathPackage\examples
+        C:\Users\smoke\Documents\Python Scripts\TestPathPackage\tests
+        C:\Users\smoke\Documents\Python Scripts\TestPathPackage
+        C:\Users\smoke\Documents\Python Scripts\TestPathPackage\examples
+        C:\Users\smoke\Documents\Python Scripts\TestPathPackage\src
+        C:\Users\smoke\.conda\envs\TestPathDev\python39.zip
+        C:\Users\smoke\.conda\envs\TestPathDev\DLLs
+        C:\Users\smoke\.conda\envs\TestPathDev\lib
+        C:\Users\smoke\.conda\envs\TestPathDev
+        C:\Users\smoke\.conda\envs\TestPathDev\lib\site-packages
+        C:\Users\smoke\.conda\envs\TestPathDev\lib\site-packages\win32
+        C:\Users\smoke\.conda\envs\TestPathDev\lib\site-packages\win32\lib
+        C:\Users\smoke\.conda\envs\TestPathDev\lib\site-packages\Pythonwin
+...
+```
+
+6. Tried setting envireoment variables in the batch file that calls VS Code.
+#### VS Code (TestPathDev).bat
+```
+rem ########## VS Code Launch ############
+CALL C:\ProgramData\Anaconda3\Scripts\activate.bat C:\ProgramData\Anaconda3
+CALL conda activate TestPathDev
+set WORKSPACE_FOLDER="%HOMEPATH%\Documents\Python Scripts\TestPathPackage"
+set WORKSPACE_FILE="%WORKSPACE_FOLDER%\TestPathPackage.code-workspace"
+Cd "%WORKSPACE_FOLDER%"
+C:
+code TestPathPackage.code-workspace
+```
+
+- Modifiled the `.env` file to match:
+```
+#HOME_PATH="C:\Users\smoke"
+#WORKSPACE_FOLDER="${HOME_PATH}/Documents/Python Scripts/TestPathPackage"
+PYTHONPATH="${WORKSPACE_FOLDER}/tests;${WORKSPACE_FOLDER};${WORKSPACE_FOLDER}/examples;${WORKSPACE_FOLDER}/src;${PYTHONPATH}"
+```
+- *example_script.py* still ran correctly, but pylint gave an import error:
+![import_error](import_error.png)
+
+- The %WORKSPACE_FOLDER% environment variable set in the VS Code batch file did not propegate (Not surprising)
+
+*PythonPaths:*<br>
+> c:\Users\smoke\Documents\Python Scripts\TestPathPackage\examples<br>
+> **C:\tests**<br>
+> C:\Users\smoke\Documents\Python Scripts\TestPathPackage\examples<br>
+> **C:\examples**<br>
+> **C:\src**<br>
+> C:\Users\smoke\Documents\Python Scripts\TestPathPackage\src<br>
+> ...
+
+<b><i>`pylint` depend on the prsenece of the `__init__.py` and on correct `.env` settings.</i></b>
