@@ -6,7 +6,7 @@
 	],
 	"settings": {
 		"python.envFile": "${workspaceRoot}/.env",
-		"python.defaultInterpreterPath": "C:/ProgramData/Anaconda3",
+		"python.defaultInterpreterPath": "C:/Users/${env:USERNAME}.conda/envs/TestPathDev/python.exe",
 	},
 	"launch": {
 		"version": "0.2.0",

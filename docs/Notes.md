@@ -213,3 +213,24 @@ From [VS Code Experiments pythonDeprecatePythonPath](https://aka.ms/AAfekmf)
 > - A new optional setting `python.defaultInterpreterPath` is introduced in the  user and workspace scope, from which the extension will read the value when loading a project.
 > - Changes to the python.defaultInterpreterPath will not be picked up by the  Python extension once user explicitly chooses a different interpreter for the  workspace. The extension will also not set nor change the value of this setting, it will only read from it.
 
+### defaultInterpreterPath
+> Path to default Python to use when extension loads up for the first time.
+
+1. Setting `"python.defaultInterpreterPath": "C:/ProgramData/Anaconda3",`
+> - Resulted in error message: "No python interpreter selected"
+
+> Select Interpreter<br>
+> - Selected Interpreten C/ProgramData/Anaconda3<br>
+> - Use Python from 'python.defaultlnterpreterPath' setting C:/ProgramData/Anaconda3<br>
+> - Python 3.9.10 ('EDW_QA') ~\\.conda\envs\EDW_QA\python.exe<br>
+> - Python 3.9.7 (TormExtraction1) ~\\.conda\envs\FormExtraction\python.exe<br>
+> - Python 3.9.7 (TestPathDev1) ~\\.conda\envs\TestPathDev\python.exe<br>
+> - Python 3.9.7 ('variandb_relations') ~\\.conda\envs\variandb_relations\python.exe<br>
+> - Python 3.9.7 ('base') C:\ProgramData\Anaconda3\python.exe<br>
+> - Python 3.8.12 ('sectionary') ~\\.conda\envs\sectionary\python.exe<br>
+> - Python 3.8.12 ('sectionaryDev") ~\\.conda\envs\sectionaryDev\python.exe<br>
+> - Python 3.8.10 ('standard') ~\\.conda\envs\standard\python.exe<br>
+
+
+
+

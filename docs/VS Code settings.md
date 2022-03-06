@@ -1,14 +1,15 @@
 # `python.pythonPath` Settings
-- For *Global* Anaconda installations the path is `"C:/ProgramData/Anaconda3"`
-- For *local* (single user) installations the path is `"C:/Users/<user name>/anaconda3"`
-### defaultInterpreterPath
+- For *Global* Anaconda environments the path is 
+    > `"C:/ProgramData/Anaconda3/<Environment Name>/python.exe"`
+- For *local* (single user) environments the path is 
+    > `"C:/Users/${env:USERNAME}.conda/envs/<Environment Name>/python.exe"`
+### Default Interpreter Path
 > Path to default Python to use when extension loads up for the first time, 
 no longer used once an interpreter is selected for the workspace. 
 See https://aka.ms/AAfekmf to understand when this is used.
-> - `"python.defaultInterpreterPath": "C:/ProgramData/Anaconda3",`<br>
+> - `"python.defaultInterpreterPath": "C:/ProgramData/Anaconda3/<Environment Name>/python.exe",`<br>
 > **OR**<br>
-> - `"python.defaultInterpreterPath": "C:/Users/${env:USERNAME}/anaconda3",`
-
+> - `"python.defaultInterpreterPath": "C:/Users/${env:USERNAME}.conda/envs/<Environment Name>/python.exe",`
 
 # Settings for pylint 
 <b><i>`pylint` depends on the presence of the `__init__.py` and on correct `.env` settings.</i></b>
