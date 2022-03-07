@@ -7,6 +7,19 @@
 	"settings": {
 		"python.envFile": "${workspaceRoot}/.env",
 		"python.defaultInterpreterPath": "C:/Users/${env:USERNAME}.conda/envs/TestPathDev/python.exe",
+		"python.analysis.extraPaths": [
+			"src",
+			"examples",
+			"tests"
+		],
+		"python.autoComplete.extraPaths": [
+			"src",
+			"examples",
+			"tests"
+		],
+		"terminal.integrated.env.windows": {
+			"PYTHONPATH": "${workspaceFolder}/src;${workspaceFolder}/tests;${workspaceFolder}/examples;${env:PYTHONPATH}"
+		},
 	},
 	"launch": {
 		"version": "0.2.0",
@@ -20,5 +33,5 @@
 				"justMyCode": true
 			}
 		]
-	}
+	},
 }

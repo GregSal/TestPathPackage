@@ -231,6 +231,16 @@ From [VS Code Experiments pythonDeprecatePythonPath](https://aka.ms/AAfekmf)
 > - Python 3.8.12 ('sectionaryDev") ~\\.conda\envs\sectionaryDev\python.exe<br>
 > - Python 3.8.10 ('standard') ~\\.conda\envs\standard\python.exe<br>
 
+# Terminal Settings
+1. Added `"PYTHONPATH"` settings to the The `"terminal.integrated.env.windows"` setting:
+
+    > ```
+    > "terminal.integrated.env.windows": {
+    >     "PYTHONPATH": "${workspaceFolder}/src;${workspaceFolder}/tests;${workspaceFolder}/examples;${env:PYTHONPATH}"
+    > ```
+
+- This caused `Run Python File`
+![Run Python File](Run_Python_File.png) to find the correct paths.
 
 
 

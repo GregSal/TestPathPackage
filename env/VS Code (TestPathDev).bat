@@ -6,4 +6,5 @@ CALL C:\ProgramData\Anaconda3\Scripts\activate.bat C:\ProgramData\Anaconda3
 CALL conda activate TestPathDev
 Cd "%WORKSPACE_FOLDER%"
 C:
-START code TestPathPackage.code-workspace
+CALL code TestPathPackage.code-workspace
+EXIT
