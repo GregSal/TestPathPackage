@@ -9,4 +9,5 @@ dependencies:
   - spyder
   - pylint
   - jupyterlab
+  - numpy
 prefix: C:\Users\smoke\.conda\envs\TestPathDev

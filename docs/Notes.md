@@ -242,5 +242,11 @@ From [VS Code Experiments pythonDeprecatePythonPath](https://aka.ms/AAfekmf)
 - This caused `Run Python File`
 ![Run Python File](Run_Python_File.png) to find the correct paths.
 
-
-
+2. I have had problems with the numpy package in Conda user environments so, added that to teh test environment and tried using it:
+    ```python
+    # %% Import numpy module
+    import numpy as np
+    num_list = np.arange(1,5)
+    print(num_list)
+    ```
+    > No issues were encountered

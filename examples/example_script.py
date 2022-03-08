@@ -25,4 +25,11 @@ tomorrow = what_is_tomorrow()
 tomorrow_str = tomorrow.strftime("%A, %d. %B %Y %I:%M%p")
 print(f'Tomorrow is: {tomorrow_str}')
 
+# %% Import numpy module
+import numpy as np
+num_list = np.arange(1,5)
+print(num_list)
+
+# %% Exiting module
 print(f'\nDone module: {__name__}\n\n')
+

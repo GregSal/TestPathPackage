@@ -3,14 +3,14 @@ conda create -y -n TestPathDev python=3.9
 conda activate TestPathDev
 
 ## Special Packages
-conda install -y parsedatetime
+conda install -y parsedatetime numpy
 
 ## Dev Packages
 conda install -y spyder jupyterlab nb_conda_kernels pylint
 
 ########## Export commands ############
 conda env export > C:\TEMP\TestPathDev_FULL.yml
-conda env export --from-history > C:\TEMP\TestPathDev.yml
+conda env export --from-history > C:\TEMP\TestPathDev.yml
 conda list --explicit > C:\TEMP\TestPathDev_specfile.txt
 
 ########## Install commands ############
