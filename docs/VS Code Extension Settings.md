@@ -1,5 +1,22 @@
 # VS Code Python Settings
 
+## Random Stuff
+```json
+    "kite.showWelcomeNotificationOnStartup": false,
+    "vsicons.dontShowNewVersionMessage": true,
+    "search.useGlobalIgnoreFiles": true,
+    // "xmlTools.enableXmlTreeViewCursorSync": true,
+    // "bookmarks.saveBookmarksInProject": true,
+    // "[jsonc]": {
+    // "editor.defaultFormatter": "esbenp.prettier-vscode"
+    // },
+    // "[xml]": {
+    // "editor.defaultFormatter": "DotJoshJohnson.xml"
+    // },
+
+    // Formatter extensions
+```
+
 ## Workbench Settings
 ```json
 //    "workbench.startupEditor": "newUntitledFile",
@@ -7,39 +24,36 @@
         "*.ipynb": "jupyter-notebook",
         "*.md": "vscode.markdown.preview.editor"
     },
+    "workbench.editor.untitled.hint": "hidden",
+    "workbench.editor.highlightModifiedTabs": true,
 ```
 
+## Clean up
+```json
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+//    "editor.formatOnSave": true,
+//    "editor.defaultFormatter": "esbenp.prettier-vscode",
+```
 
 ## Python Editor Appearance settings
 ```json
     "editor.rulers": [80, 120],
     "editor.tabSize": 4,
     "editor.renderWhitespace": "trailing",
+    "editor.renderLineHighlight": "gutter",
+    "editor.cursorSurroundingLines": 2,
+    "editor.minimap.enabled": false,
 ```
-
-## File Formatting
-```json
-    "files.trimTrailingWhitespace": true,
-    "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true,
-
-    "files.associations": {
-        "*.pyx": "python",
-        "*.py": "python"
-    },
-    // "files.autoSave": "onFocusChange",
-    // "editor.formatOnSave": true,
-    // "editor.defaultFormatter": "esbenp.prettier-vscode",
-```
-
 ## Editor Suggestion settings
 ```json
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-
     "editor.suggestSelection": "first",
     "editor.acceptSuggestionOnEnter": "off",
     "editor.suggest.localityBonus": true,
     "editor.inlineSuggest.enabled": true,
+
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
 ```
 # DONE TO HERE
 
@@ -52,7 +66,11 @@
 ```
 
 ```json
-
+    "files.autoSave": "onFocusChange",
+    "files.associations": {
+        "*.pyx": "python",
+        "*.py": "python"
+    },
 ```
 
 ## Python Settings
