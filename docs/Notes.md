@@ -234,7 +234,7 @@ From [VS Code Experiments pythonDeprecatePythonPath](https://aka.ms/AAfekmf)
 # Terminal Settings
 1. Added `"PYTHONPATH"` settings to the The `"terminal.integrated.env.windows"` setting:
 
-    > ```
+    > ```json
     > "terminal.integrated.env.windows": {
     >     "PYTHONPATH": "${workspaceFolder}/src;${workspaceFolder}/tests;${workspaceFolder}/examples;${env:PYTHONPATH}"
     > ```
@@ -250,3 +250,112 @@ From [VS Code Experiments pythonDeprecatePythonPath](https://aka.ms/AAfekmf)
     print(num_list)
     ```
     > No issues were encountered
+
+3. Tried defining `"terminal.integrated.automationProfile.windows"`:
+`"terminal.integrated.automationProfile.windows"`
+
+    > The old settings `terminal.integrated.automationShell.*` have been deprecated and new `terminal.integrated.automationProfile.*` settings have been added. This allows for greater freedom in specifying properties of terminals used for tasks, including shell, icon, color, and shell argument.
+
+> ```json
+> "terminal.integrated.automationProfile.windows": {
+>       "path": "C:\\WINDOWS\\System32\\cmd.exe",
+>       "cursorStyle": "line",
+>       "args": [
+>         "/K",
+>         "C:\\ProgramData\\Anaconda3\\Scripts\\activate.bat C:\\ProgramData\\Anaconda3"
+>       ],
+>       "icon": "target",
+>       "color": "terminal.ansiGreen",
+>     },
+> ```
+
+- This did not appear to have any effect
+- Documentation states:
+    > The terminal profile to use for automation-related terminal usage like tasks and debug. *This setting will currently be ignored if `terminal.integrated.automationShell.windows` is set.*
+- I have not explicitly set `terminal.integrated.automationShell.windows`, but perhaps it is impled or default?
+
+4. Tried defining a terminal first and then referencing it with `"terminal.integrated.automationProfile.windows"`:
+
+> ```json
+> "terminal.integrated.profiles.windows": {
+>    "Conda": {
+>        "path": "C:\\WINDOWS\\System32\\cmd.exe",
+>        "cursorStyle": "line",
+>        "args": ["/K", "C:\\ProgramData\\Anaconda3\\Scripts\\activate.bat C:\\ProgramData\\Anaconda3"],
+>        "fontFamily": "Hack",
+>        "icon": "terminal-bash",
+>        "color": "terminal.ansiCyan",
+>    },
+>},
+> "terminal.integrated.automationProfile.windows": "Conda",
+> ```
+
+- Got the following error message for `"terminal.integrated.automationProfile.windows": "Conda"`
+    > Incorrect type. Expected one of object, null.
+
+
+5. Tried: `"terminal.integrated.defaultProfile.windows": "Conda"`
+- This appears to work.
+
+6. Tried replacing `"PYTHONPATH"` in `"terminal.integrated.env.windows"` with a specification within a terminal:
+
+> ```json
+> "terminal.integrated.env.windows": {
+>    "PYTHONPATH": "${workspaceFolder}/src;${workspaceFolder}/tests;${workspaceFolder}/examples;${env:PYTHONPATH}"
+> },
+> ```
+
+Is replaced with:
+
+> ```json
+> "terminal.integrated.profiles.windows": {
+>    "Conda": {
+>        "path": "C:\\WINDOWS\\System32\\cmd.exe",
+>        "cursorStyle": "line",
+>        "args": ["/K", "C:\\ProgramData\\Anaconda3\\Scripts\\activate.bat C:\\ProgramData\\Anaconda3"],
+>        "fontFamily": "Hack",
+>        "icon": "terminal-bash",
+>        "color": "terminal.ansiCyan",
+>        "env": {
+>            "PYTHONPATH": "${workspaceFolder}/src;${workspaceFolder}/tests;${workspaceFolder}/examples;${env:PYTHONPATH}"
+>        },
+>    },
+>},
+> "terminal.integrated.automationProfile.windows": "Conda",
+> ```
+
+7. Tried adding to `"PYTHONPATH"` in `"terminal.integrated.env.windows"` with a specification within a terminal:
+> ```json
+> "terminal.integrated.env.windows": {
+>    "PYTHONPATH": "${workspaceFolder}/src;${workspaceFolder}/tests;${workspaceFolder}/examples;${env:PYTHONPATH}"
+> },
+> ```
+Combined with
+> ```json
+> "terminal.integrated.profiles.windows": {
+>    "Conda": {
+>        "path": "C:\\WINDOWS\\System32\\cmd.exe",
+>        "cursorStyle": "line",
+>        "args": ["/K", "C:\\ProgramData\\Anaconda3\\Scripts\\activate.bat C:\\ProgramData\\Anaconda3"],
+>        "fontFamily": "Hack",
+>        "icon": "terminal-bash",
+>        "color": "terminal.ansiCyan",
+>        "env": {
+>            "PYTHONPATH": "${workspaceFolder}/docs;${env:PYTHONPATH}"
+>        },
+>    },
+>},
+> "terminal.integrated.automationProfile.windows": "Conda",
+> ```
+
+```
+PythonPaths:
+        c:\Users\smoke\Documents\Python Scripts\TestPathPackage\examples
+        C:\Users\smoke\Documents\Python Scripts\TestPathPackage\docs    
+        C:\Users\smoke\Documents\Python Scripts\TestPathPackage
+        C:\Users\smoke\.conda\envs\TestPathDev\python39.zip
+...
+```
+- The terminal definition `"PYTHONPATH": "${workspaceFolder}/docs;${env:PYTHONPATH}"` replaced rather than added to `"PYTHONPATH"`.  
+
+Tryuing to create python command line terminal
