@@ -44,52 +44,69 @@
 # DONE TO HERE
 
 ## Python run settings
+- `"terminal.executeInFileDir"`
+    > Indicates whether to run a file in the file's directory instead of the current folder.
+    > Default: false
+- `"terminal.activateEnvInCurrentTerminal"`
+    > Specifies whether to activate the currently open terminal when the Python extension is activated, using the virtual environment selected.
+    > Default: false
 ```json
-    "python.terminal.executeInFileDir": true,
+    // "python.terminal.executeInFileDir": true,
     "python.terminal.activateEnvInCurrentTerminal": true,
-    "python.terminal.launchArgs": [
-        ],
+    // "python.terminal.launchArgs": [ ],
 ```
 
+## Python formatting settings
 ```json
-
-```
-
-## Python Settings
-    "python.experiments.enabled": false,
+    // "python.experiments.enabled": false,
     "[python]": {
         "editor.formatOnSave": false,
         "editor.defaultFormatter": "ms-python.python"
-    "Workspace_Formatter.includePattern": ["*.py"]
+        "Workspace_Formatter.includePattern": ["*.py"]
     },
-
-## Python Linting Settings
-    "python.linting.mypyEnabled": false,
-    "python.linting.pylintEnabled": true,
-    "python.linting.pylintUseMinimalCheckers": false,
-    "python.linting.enabled": true,
-    "python.linting.lintOnSave": true,
-    "python.linting.flake8Enabled": false,
-    "python.linting.mypyEnabled": true,
-    "python.formatting.provider": "autopep8",
-
-    "python.languageServer": "Default",
-    "python.languageServer": "Pylance",
-
-## DocString Settings
-    "autoDocstring.includeExtendedSummary": true,
-    "autoDocstring.quoteStyle": "'''",
-    "autoDocstring.generateDocstringOnEnter": true,
-    "autoDocstring.quoteStyle": "'''",
-
-    "docstringFormatter.wrapDescriptionsLength": 79,
 
     "pythonIndent.useTabOnHangingIndent": true,
     "python.analysis.completeFunctionParens": true,
     "python.autoComplete.addBrackets": true,
+    "python.formatting.provider": "autopep8",
+```
 
+## Python Linting Settings
+- `"python.analysis.typeCheckingMode"`
+    > Specifies the level of type checking analysis to perform. Available values are:
+    - off
+        > No type checking analysis is conducted; unresolved imports/variables diagnostics are produced.
+    - basic
+        > Non-type checking-related rules (all rules in off), as well as basic type checking rules are used.
+    - strict
+        > All type checking rules at the highest severity of error (including all rules in off and basic categories) are used.
+
+```json
+    "python.languageServer": "Pylance",
+    "python.analysis.typeCheckingMode": "basic",
+
+    "python.linting.enabled": true,
+    "python.linting.lintOnSave": true,
+
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintUseMinimalCheckers": false,
+
+    "python.linting.mypyEnabled": false,
+    "python.linting.flake8Enabled": false,
+```
+
+
+## DocString Settings
+```json
+    "autoDocstring.includeExtendedSummary": true,
+    "autoDocstring.generateDocstringOnEnter": true,
+    "autoDocstring.quoteStyle": "'''",
+
+    "docstringFormatter.wrapDescriptionsLength": 79,
+```
 
 ## Unit Test Settings
+```json
     "testExplorer.addToEditorContextMenu": true,
     "testExplorer.mergeSuites": true,
 
@@ -109,9 +126,10 @@
         "-p",
         "*tests_*.py"
     ],
-
+```
 
 ## Jupyter Notebook Settings
+```json
     "jupyter.pythonExportMethod": "nbconvert",
     "jupyter.stopOnFirstLineWhileDebugging": false,
     "jupyter.themeMatplotlibPlots": true,
@@ -134,23 +152,10 @@
     },
     "notebook.cellFocusIndicator": "border",
     "notebook.showFoldingControls": "always",
-
-## Git settings
-    "git.enableSmartCommit": true,
-    "git.autofetch": true,
-    "git.autorefresh": false,
-    "git.confirmSync": false,
-
-#### Trust folder setting
-`    "security.workspace.trust.untrustedFiles": "open",`
-
-## Explorer Settings
-    "explorer.confirmDragAndDrop": false,
-    "explorer.confirmDelete": false,
-    "explorer.copyRelativePathSeparator": "/",
-
+```
 
 ## Spelling words
+```json
     "cSpell.userWords": [
       "arange",
       "disp",
@@ -193,18 +198,8 @@
       "sql",
       "xml"
     ],
+```
 
-
-
-### Theme Settings
-    "workbench.iconTheme": "vscode-great-icons",
-    "workbench.colorTheme": "Default High Contrast",
-    "workbench.colorTheme": "Solarized Light",
-    "workbench.colorTheme": "Visual Studio Light",
-    "workbench.colorTheme": "Monokai",
-    "workbench.colorTheme": "Quiet Light",
-
-    "materialTheme.accent": "Cyan",
 
 
 ## MSSQL Settings
@@ -258,9 +253,6 @@
 
 
 
-# python.analysis.typeCheckingMode	Setting
-- off
-- Specifies the level of type checking analysis to perform. Available values are off, basic, and strict. When set to off no type checking analysis is conducted; unresolved imports/variables diagnostics are produced. When set to basic non-type checking-related rules (all rules in off), as well as basic type checking rules are used. When set to strict all type checking rules at the highest severity of error (including all rules in off and basic categories) are used.
 
 
 #### Notes
