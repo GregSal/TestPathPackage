@@ -20,6 +20,7 @@
 		"terminal.integrated.env.windows": {
 			"PYTHONPATH": "${workspaceFolder}/src;${workspaceFolder}/tests;${workspaceFolder}/examples;${env:PYTHONPATH}"
 		},
+		"jupyter.notebookFileRoot": "${workspaceFolder}",
 	},
 	"launch": {
 		"version": "0.2.0",

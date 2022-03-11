@@ -265,6 +265,105 @@
 
 
 
+{
+    "code-runner.executorMap": {
+        "python": "python -u",
+        "powershell": "powershell -ExecutionPolicy ByPass -File",
+        "bat": "cmd /c",
+        "csharp": "scriptcs",
+        "vbscript": "cscript //Nologo"
+    },
+
+
+    "tabnine.experimentalAutoImports": true,
+
+
+    "pythonPathSetter.sourceDirs": [
+      "src",
+      ".",
+      "C:\\\\Users\\\\gsalomon\\\\OneDrive - Queen's University\\\\Python\\\\Projects\\\\Utilities"
+    ],
+
+
+    "mssql.connections": [
+      {
+        "server": "{{put-server-name-here}}",
+        "database": "{{put-database-name-here}}",
+        "user": "{{put-username-here}}",
+        "password": ""
+      }
+    ],
+
+
+    "path-intellisense.absolutePathToWorkspace": false,
+
+
+    "xmlTools.enableXmlTreeViewCursorSync": true
+
+
+    "sync.autoDownload": true,
+    "sync.autoUpload": true,
+
+
+  "spellright.addToSystemDictionary": true,
+  "spellright.language": [
+      "en"
+  ],
+  "spellright.documentTypes": [
+      "markdown",
+      "latex",
+      "plaintext",
+      "python"
+  ],
+  "spellright.notificationClass": "hint",
+
+
+    "gitlens.menus": {
+        "editor": {
+            "blame": false,
+            "clipboard": true,
+            "compare": true,
+            "details": false,
+            "history": true,
+            "remote": false
+        },
+        "editorGroup": {
+            "blame": true,
+            "compare": true
+        },
+        "editorTab": {
+            "clipboard": true,
+            "compare": true,
+            "history": true,
+            "remote": true
+        },
+        "explorer": {
+            "clipboard": true,
+            "compare": true,
+            "history": true,
+            "remote": true
+        },
+        "scmGroup": {
+            "compare": true,
+            "openClose": true,
+            "stash": true,
+            "stashInline": true
+        },
+        "scmItem": {
+            "clipboard": true,
+            "compare": true,
+            "history": true,
+            "remote": true,
+            "stash": true
+        }
+    },
+    "gitlens.views.repositories.location": "scm",
+    "gitlens.views.fileHistory.location": "explorer",
+    "gitlens.views.lineHistory.location": "explorer",
+    "gitlens.views.compare.location": "gitlens",
+    "gitlens.views.search.location": "gitlens",
+
+
 
 
 
@@ -273,8 +372,38 @@
       "A:\\OneDrive - Queen's University\\Python\\Projects"
     ],
 
-
-
+## Sync Settings
+```json
+{
+    "ignoreUploadFiles":[
+        "projects.json",
+        "projects_cache_vscode.json",
+        "projects_cache_git.json",
+        "projects_cache_svn.json",
+        "gpm_projects.json",
+        "gpm-recentItems.json"
+        ],
+    "ignoreUploadFolders":["workspaceStorage"],
+    "ignoreExtensions":[],
+    "replaceCodeSettings":{},
+    "gistDescription":"Visual Studio Code Settings Sync Gist",
+    "version":323,
+    "token":"",
+    "downloadPublicGist":false,
+    "supportedFileExtensions":[
+        "json",
+        "code-snippets"
+        ],
+    "openTokenLink":true,
+    "disableUpdateMessage":false,
+    "lastUpload":null,
+    "lastDownload":null,
+    "githubEnterpriseUrl":null,
+    "askGistName":false,
+    "customFiles":{},
+    "hostName":null
+}
+```
 
 # python.analysis.typeCheckingMode	Setting
 - off

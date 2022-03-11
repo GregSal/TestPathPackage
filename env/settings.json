@@ -1,0 +1,401 @@
+{
+    "kite.showWelcomeNotificationOnStartup": false,
+    "vsicons.dontShowNewVersionMessage": true,
+    "material-icon-theme.showWelcomeMessage": false,
+
+    "search.useGlobalIgnoreFiles": true,
+    "security.workspace.trust.untrustedFiles": "open",
+
+    // Appearance Settings
+    "workbench.colorTheme": "Cobalt2",
+    "workbench.iconTheme": "vscode-great-icons",
+    "window.zoomLevel": 1,
+    "breadcrumbs.enabled": true,
+
+
+    "editor.fontFamily": "Hack",
+    "editor.fontSize": 12,
+    "editor.fontWeight": "normal",
+
+    "editor.renderLineHighlight": "gutter",
+    // "editor.renderIndentGuides": false,
+    "editor.cursorSurroundingLines": 2,
+    "editor.minimap.enabled": false,
+    "editor.foldingHighlight": true,
+    "editor.showFoldingControls": "always",
+    "editor.lightbulb.enabled": true,
+    "editor.occurrencesHighlight": true,
+    "workbench.editor.highlightModifiedTabs": true,
+
+    "editor.autoIndent": "full",
+    "editor.autoSurround": "languageDefined",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.autoClosingBrackets": "languageDefined",
+
+    "editor.guides.indentation": true,
+    "editor.guides.highlightActiveBracketPair": true,
+    "editor.guides.highlightActiveIndentation": true,
+
+    "editor.rulers": [80, 120],
+    "editor.tabSize": 4,
+    "editor.renderWhitespace": "trailing",
+
+    // Terminal Settings
+    "terminal.external.windowsExec": "C:\\WINDOWS\\System32\\cmd.exe",
+
+    "terminal.integrated.fontFamily": "Hack",
+    "terminal.integrated.fontSize": 12,
+    "terminal.integrated.fontWeight": "normal",
+    "terminal.integrated.cursorStyle": "line",
+
+    "terminal.integrated.profiles.windows": {
+        "Conda": {
+          "path": "C:\\WINDOWS\\System32\\cmd.exe",
+          "args": ["/K", "C:\\ProgramData\\Anaconda3\\Scripts\\activate.bat C:\\ProgramData\\Anaconda3"],
+          "icon": "terminal-bash",
+          "color": "terminal.ansiCyan",
+        },
+        "CondaPS": {
+            "source": "PowerShell",
+            "args": ["-ExecutionPolicy", "ByPass", "-NoExit", "-Command", "& 'C:\\ProgramData\\Anaconda3\\shell\\condabin\\conda-hook.ps1' ; conda activate 'C:\\ProgramData\\Anaconda3'"],
+            "icon": "terminal-powershell",
+            "color": "terminal.ansiCyan",
+          },
+          "PythonShell": {
+          "path": "C:\\WINDOWS\\System32\\cmd.exe",
+          "args": ["/K", "python.exe"],
+          "overrideName": true,
+          "icon": "terminal-powershell",
+          "color": "terminal.ansiGreen",
+          },
+          "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell",
+            },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        },
+    },
+    "terminal.integrated.defaultProfile.windows": "Conda",
+
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook",
+        "*.md": "vscode.markdown.preview.editor"
+    },
+
+    // Suggestions
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "workbench.editor.untitled.hint": "hidden",
+    "editor.suggestSelection": "first",
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.suggest.localityBonus": true,
+    "editor.inlineSuggest.enabled": true,
+
+    // File Formatting
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.associations": {
+      "*.pyx": "python",
+      "*.py": "python"
+    },
+    // "files.autoSave": "onFocusChange",
+    //"editor.formatOnSave": true,
+    //"editor.defaultFormatter": "esbenp.prettier-vscode",
+
+    // Python run settings
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "python.terminal.executeInFileDir": false,
+
+    // Python formatting settings
+    "pythonIndent.useTabOnHangingIndent": true,
+    "python.analysis.completeFunctionParens": true,
+    "python.analysis.logLevel": "Warning",
+
+    "python.autoComplete.addBrackets": true,
+
+    // Python Linting Settings
+    "python.languageServer": "Pylance",
+    "python.analysis.typeCheckingMode": "basic",
+
+    "python.linting.enabled": true,
+    "python.linting.lintOnSave": true,
+
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintUseMinimalCheckers": false,
+
+    "python.linting.mypyEnabled": false,
+    "python.linting.flake8Enabled": false,
+
+    // testExplorer Settings
+    "testExplorer.addToEditorContextMenu": true,
+    "testExplorer.mergeSuites": true,
+    "pythonTestExplorer.testFramework": "unittest",
+    "testExplorer.onReload": "reset",
+    "testExplorer.sort": "byLocationWithSuitesFirst",
+    // Unit Test Settings
+    "python.testing.cwd": "./Tests",
+    "python.testing.promptToConfigure": true,
+    "python.testing.unittestEnabled": true,
+    "python.testing.unittestArgs": [
+        "discover",
+        "-v",
+        "-s",
+        "Testing",
+        "-p",
+        "*tests_*.py"
+    ],
+    "python.testing.pytestEnabled": false,
+
+  // DocString Settings
+
+    "autoDocstring.includeExtendedSummary": true,
+    "autoDocstring.generateDocstringOnEnter": true,
+    "autoDocstring.quoteStyle": "'''",
+    "ai-docstring.includeExtendedSummary": true,
+    "ai-docstring.quoteStyle": "'''",
+
+    "docstringFormatter.wrapDescriptionsLength": 79,
+
+  // Jupyter Notebook Settings
+    "jupyter.pythonExportMethod": "nbconvert",
+    "jupyter.exportWithOutputEnabled": true,
+    "jupyter.stopOnFirstLineWhileDebugging": false,
+    "jupyter.themeMatplotlibPlots": true,
+    "jupyter.sendSelectionToInteractiveWindow": true,
+    "jupyter.askForKernelRestart": false,
+    "jupyter.interactiveWindowMode": "perFile",
+    "jupyter.jupyterServerType": "local",
+    "jupyter.alwaysScrollOnNewCell": true,
+
+    "notebook.compactView": false,
+    "notebook.consolidatedRunButton": true,
+    "notebook.outline.showCodeCells": true,
+    "notebook.diff.ignoreMetadata": true,
+    "notebook.diff.ignoreOutputs": true,
+    "notebook.lineNumbers": "on",
+    "notebook.cellToolbarLocation": {
+      "default": "right",
+      "jupyter-notebook": "left"
+    },
+    "notebook.cellFocusIndicator": "border",
+    "notebook.showFoldingControls": "always",
+
+    "better-comments.tags": [
+        {
+          "tag": "!",
+          "color": "#98C379",
+          "strikethrough": false,
+          "backgroundColor": "transparent"
+        },
+        {
+          "tag": "?",
+          "color": "#FF8C00",
+          "strikethrough": false,
+          "backgroundColor": "transparent"
+        },
+        {
+          "tag": "//",
+          "color": "#3498DB",
+          "strikethrough": true,
+          "backgroundColor": "transparent"
+        },
+        {
+          "tag": "xx",
+          "color": "#FF2D00",
+          "strikethrough": true,
+          "backgroundColor": "transparent"
+        },
+        {
+          "tag": "*",
+          "color": "#FF8C00",
+          "strikethrough": false,
+          "backgroundColor": "transparent"
+        }
+      ],
+      "better-comments.highlightPlainText": true,
+
+        "todo-tree.highlights.enabled": false,
+        "todo-tree.highlights.customHighlight": {
+          "Question": {
+            "icon": "question",
+            "iconColour": "#ff0000",
+            "background ": "#000000",
+            "type": "text"
+          },
+          "TODO": {
+            "icon": "check",
+            "type": "text"
+          },
+          "FIXME": {
+            "icon": "alert",
+            "foreground": "#000000",
+            "iconColour": "#ffff00",
+            "type": "line"
+          },
+          "Done To Here": {
+            "icon": "arrow-right",
+            "iconColour": "#50FF00",
+            "type": "tag"
+          }
+      },
+      "todo-tree.highlights.defaultHighlight": {
+        "icon": "alert",
+        "type": "text",
+        "foreground": "#ff0000",
+        "background": "#ffffff",
+        "opacity": 50,
+        "iconColour": "#0000ff"
+        },
+        "todo-tree.regex.regexCaseSensitive": false,
+        "todo-tree.tree.showCountsInTree": true,
+        "todo-tree.general.statusBar": "tags",
+        "todo-tree.general.tags": [
+          "TODO",
+          "FIXME",
+          "Question",
+          "Done To Here"
+        ],
+
+        "todohighlight.isCaseSensitive": true,
+        "todohighlight.isEnable": true,
+        "todohighlight.keywords": [
+          "DEBUG:",
+          "REVIEW:",
+          {
+            "text": "NOTE",
+            "color": "#ff0000",
+            "backgroundColor": "yellow",
+            "overviewRulerColor": "grey"
+          },
+          {
+            "text": "Question",
+            "color": "#000000",
+            "backgroundColor": "#00ffff",
+            "isWholeLine": false
+          },
+          {
+            "text": "FIXME",
+            "color": "red",
+            "border": "1px solid red",
+            "borderRadius": "2px",
+            //NOTE: using borderRadius along with `border` or you will see nothing change
+            "backgroundColor": "rgba(0,0,0,.2)"
+            //other styling properties goes here ...
+          },
+          {
+            "text": "TODO",
+            "color": "#ff0000",
+            "backgroundColor": "#87CEFA",
+            "overviewRulerColor": "yellow"
+          },
+          {
+            "text": "Done To Here",
+            "color": "#000",
+            "backgroundColor": "#00FF00",
+            "overviewRulerColor": "yellow",
+            "fontWeight": "bold"
+          },
+        ],
+        "todohighlight.include": [
+          "**/*.js",
+          "**/*.jsx",
+          "**/*.py",
+          "**/*.xml",
+          "**/*.html",
+          "**/*.css",
+          "**/*.scss"
+        ],
+        "todohighlight.exclude": [
+          "**/node_modules/**",
+          "**/bower_components/**",
+          "**/dist/**",
+          "**/build/**",
+          "**/.vscode/**",
+          "**/.github/**",
+          "**/_output/**",
+          "**/*.min.*",
+          "**/*.map",
+          "**/.next/**"
+        ],
+
+  // Spelling words
+    "cSpell.userWords": [
+      "arange",
+      "disp",
+      "dropna",
+      "DVHs",
+      "etree",
+      "fstring",
+      "gsal",
+      "iloc",
+      "indx",
+      "inplace",
+      "interp",
+      "isgeneratorfunction",
+      "mkdir",
+      "ndarray",
+      "numpy",
+      "pylint",
+      "pyplot",
+      "rmdir",
+      "rsplit",
+      "Salomons",
+      "scipy",
+      "Sectionary",
+      "struct",
+      "varkw",
+      "xlwings"
+    ],
+    "cSpell.language": "en,en-GB",
+    "cSpell.enableFiletypes": [
+      "!c",
+      "!cpp",
+      "!go",
+      "!handlebars",
+      "!haskell",
+      "!jade",
+      "!php",
+      "!pug",
+      "bat",
+      "jupyter",
+      "sql",
+      "xml"
+    ],
+    // Bookmarks
+    "bookmarks.label.suggestion": "suggestWhenSelected",
+    "bookmarks.saveBookmarksInProject": true,
+
+    // GIT
+    "git-graph.date.type": "Commit Date",
+    "git.enableSmartCommit": true,
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.autorefresh": false,
+    "team.showWelcomeMessage": false,
+    "annotator.git.ignoreWhitespaceOnBlame": true,
+
+
+
+    /Guides and indentation
+    "indenticator.inner.hover.highlight": false,
+	
+    "guides.limit.maximum": 0.3,
+    "guides.active.width": 2,
+    "guides.normal.width": 2,
+    "guides.active.style": "groove",
+    "guides.overrideDefault": true,
+    "guides.stack.width": 2,
+    "guides.active.gutter": true,
+    "guides.active.expandBrackets": true,
+
+
+  }
