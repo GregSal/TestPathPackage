@@ -385,7 +385,7 @@
 
 
 
-    /Guides and indentation
+    // Guides and indentation
     "indenticator.inner.hover.highlight": false,
 	
     "guides.limit.maximum": 0.3,
