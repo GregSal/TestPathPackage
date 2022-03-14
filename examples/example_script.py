@@ -37,5 +37,3 @@ print(num_ary)
 
 # %% Exiting module
 print(f'\nDone module: {__name__}\n\n')
-
-C:\Users\smoke\Documents\Python Scripts\TestPathPackage\src\addition\extra_script.py
